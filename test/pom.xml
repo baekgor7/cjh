@@ -5,17 +5,44 @@
   <version>1.0.0</version>
   <packaging>war</packaging>
   
+  <dependencies>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>4.3.4.RELEASE</version>
+	</dependency>
+  </dependencies>
+  
   <build>
   	<finalName>test</finalName>
   	
   	<plugins>
+  		<!-- S : src/main/webapp 까지 들어가는것을 webapp 1depth로 사용하기 위해 -->
+  		<plugin>
+  			<artifactId>maven-war-plugin</artifactId>
+  			<version>2.4</version>
+  			<configuration>
+  				<warSourceDirectory>webapp</warSourceDirectory>
+  			</configuration>
+  		</plugin>
+  		<!-- E : src/main/webapp 까지 들어가는것을 webapp 1depth로 사용하기 위해 -->
+  		
+  		<plugin>
+  			<artifactId>maven-eclipse-plugin</artifactId>
+  			<version>2.9</version>
+  			<configuration>
+  				<wtpversion>2.0</wtpversion>
+  				<wtpContextName>/</wtpContextName>
+  			</configuration>
+  		</plugin>
+  		
   		<plugin>
   			<groupId>org.pache.maven.plugins</groupId>
   			<artifactId>maven-compiler-plugin</artifactId>
   			<version>3.1</version>
   			<configuration>
-  				<source>1.7</source>
-  				<target>1.7</target>
+  				<source>1.8</source>
+  				<target>1.8</target>
   				<encoding>utf-8</encoding>
   			</configuration>
   		</plugin>
