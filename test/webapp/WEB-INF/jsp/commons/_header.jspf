@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="/stylesheets/bootstrap.css" rel="stylesheet">  
-<link href="/stylesheets/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="/stylesheets/bootstrap-responsive.css" rel="stylesheet">
 
 <style>
 body {
