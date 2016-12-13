@@ -1,0 +1,19 @@
+1. 인코딩설정
+Preferences - General - Workspace ==> Text file encoding : UTF-8 
+
+2. 폰트설정
+Preferences - General - Appearance - Colors and Fonts ==> Basic - Text Font : 나눔고딕코딩(12 정도??)
+
+3. eclipse.ini 설정
+-XX:PermSize=64M
+-XX:MaxPermSize=512M  
+-XX:MaxNewSize=512M 
+-XX:NewSize=128M 
+-Xms1024m  
+-Xmx1024m
+
+4. 이클립스 성능 설정
+Preferences - Validation ==> 알아서
+
+5.
+
