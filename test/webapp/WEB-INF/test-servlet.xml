@@ -8,8 +8,10 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- net.test.web package안에 있는 controller를 찾의라는 의미(@Controller) -->
 	<context:component-scan base-package="net.test.web" />
 	
+	<!-- controller를 annotation 기반으로 셋팅하겠다는 의미 -->
 	<mvc:annotation-driven />
 	
 	<mvc:resources location="/images/" mapping="/images/**" />

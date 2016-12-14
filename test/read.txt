@@ -15,5 +15,46 @@ Preferences - General - Appearance - Colors and Fonts ==> Basic - Text Font : �
 4. 이클립스 성능 설정
 Preferences - Validation ==> 알아서
 
-5.
+5. 이클립스(STS)와 github 연결
+Perspective - Git 클릭
+Clone Git Repository 클릭(상단 아이콘에 있음)
+Clone URI 선택 - git에서 복사한주소 넣기 - master 체크 - Directory : 이클립스의 workspace 까지 선택
 
+6. 이클립스(STS) project 생성
+Maven Project 선택 - Create a simple project 체크 후 Next -
+	Group id : (ex : com.bioAdmin),
+	Artifact id : bioAdmin,
+	Packaging : war 선택 후 finish
+	
+프로젝트 오른쪽마우스 - team - Share Project... - git선택 - Repository 맞게 선택 후 finish
+team - Add to Index(반대는 Remove from Index) 이후 team - commit
+
+7. 불필요한 파일 github에 올라가지 않게 하는방법
+.settings폴더, .classpath, .project 파일 선택후 team - Ignore 클릭
+
+8. Maven 빌드 수동으로 바꾸기
+pom.xml 오른쪽마우스 - Run as - Maven build... - 
+	name : (ex : bioAdmin for Eclipse)
+	Goals : eclipse:clean eclipse:eclipse
+	run
+	
+9. src/main/webapp를 1th로 빼내는 방법
+pom.xml에 plugins - plugin 추가 : (artifactId : maven-war-plugin)
+webapp 폴더를 드래그하여 1th로 빼기
+	
+10. web설정
+webapp 폴더 안에 WEB-INF 폴더생성
+WEB-INF 폴더 안에 web.xml 생성
+
+11. jsp파일 인코딩 설정	
+Preferences - Web - JSP Files - Encoding : UTF-8
+
+12. 스프링 mvc 샘플 소스 받기
+spring mvc showcase 검색 후 github연결 url로 이동 - 주소복사 후 5번처럼 진행
+받아진 git Repositories에서 Working Tree 오른쪽마우스 import Projects... 선택
+	
+	
+
+
+	
+	
