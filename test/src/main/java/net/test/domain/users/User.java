@@ -53,6 +53,29 @@ public class User {
 		this.email = email;
 	}	
 	
+	public boolean matchPassword(Authenticate authenticate) {
+		if(this.password == null) {
+			return false;
+		}
+		
+		return authenticate.matchPassword(this.password);
+	}
+
+	public boolean matchUserId(String inputUserId) {
+		if(inputUserId == null) {
+			return false;
+		}
+		
+		return inputUserId.equals(this.userId);
+	}	
+	
+	public User update(User updateUser) {
+		if(!matchUserId(updateUser.userId)) {
+			throw new IllegalArgumentException();
+		}
+		return new User(this.userId, updateUser.password, updateUser.name, updateUser.email);
+	}
+	
 	@Override
 	public String toString() {
 		return "User [userId="+userId+", name="+name+", email="+email+"]";
@@ -93,5 +116,6 @@ public class User {
 		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
-	}	
+	}
+
 }

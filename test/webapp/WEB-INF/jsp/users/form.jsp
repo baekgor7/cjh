@@ -16,16 +16,40 @@
 		<div class="row">
 			<div class="span12">
 				<section id="typography" />
-				<div class="page-header">
+				<div class="page-header">					
+				<c:choose>
+					<c:when test="${empty user.userId}">
 					<h1>회원가입</h1>
-				</div>
+					</c:when>
+					<c:otherwise>
+					<h1>개인정보수정</h1>
+					</c:otherwise>
+				</c:choose>				
+				</div>		
 				
-				<form:form modelAttribute="user" cssClass="form-horizontal" action="/users" method="post">
+				<c:choose>
+					<c:when test="${empty user.userId}">
+						<c:set var="method" value="post" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="method" value="put" />
+					</c:otherwise>
+				</c:choose>
+						
+				<form:form modelAttribute="user" cssClass="form-horizontal" action="/users" method="${method}">
 					<div class="control-group">
 						<label class="control-label" for="userId">사용자 아이디</label>
 						<div class="controls">
+						<c:choose>
+							<c:when test="${empty user.userId}">
 							<form:input path="userId" />
-							<form:errors path="userId" cssClass="error" />
+							<form:errors path="userId" cssClass="error" />							
+							</c:when>
+							<c:otherwise>
+							${userId}
+							<form:hidden path="userId"/>
+							</c:otherwise>
+						</c:choose>
 						</div>
 					</div>
 					<div class="control-group">

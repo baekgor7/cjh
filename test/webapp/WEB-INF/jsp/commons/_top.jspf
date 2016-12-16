@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>       
 
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
@@ -13,10 +14,16 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li><a href="/">Home</a></li>
-						<li><a href="">로그인</a></li>
-						<li><a href="/users/form">회원가입</a></li>
-						<li><a href="">로그아웃</a></li>
-						<li><a href="">개인정보수정</a></li>
+						<c:choose>
+							<c:when test="${empty sessionScope.userId}">
+						<li><a href="/users/login/form">로그인</a></li>
+						<li><a href="/users/form">회원가입</a></li>								
+							</c:when>
+							<c:otherwise>
+						<li><a href="/users/logout">로그아웃</a></li>	
+						<li><a href="/users/${sessionScope.userId}/form">개인정보수정</a></li>									
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 			</div>
