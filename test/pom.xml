@@ -124,10 +124,39 @@
 		<version>1.9.5</version>
 		<scope>test</scope>
 	</dependency>
+  		
+	<!-- S : mybatis -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis</artifactId>
+	    <version>3.4.1</version>
+	</dependency>	
+	<!-- E : mybatis -->
+	
+	<!-- S : mybatis와 스프링프레임웍 연동 -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-spring</artifactId>
+	    <version>1.3.0</version>
+	</dependency>
+	<!-- E : mybatis와 스프링프레임웍 연동 -->
   </dependencies>
   
   <build>
   	<finalName>test</finalName>
+  	
+  	<!-- resource 파일 경로 설정 : 안하면 default로 src/main/resource로 설정되어있음(Effective POM에 설정되어있음)
+  	<resources>
+  		<resource>
+  			<directory>test/src/main/resources</directory>// 기본 resource 경로 설정
+  		</resource>
+  		<resource>
+  			<directory>test/src/main/java</directory>// 추가 resource 경로 설정
+  			<excludes>
+  				<exclude>**/*.java</exclude>// 확장자가 java인것은 제외
+  			</excludes>
+  		</resource>
+  	</resources> -->
   	
   	<plugins>
   		<!-- S : src/main/webapp 까지 들어가는것을 webapp 1depth로 사용하기 위해 -->
