@@ -1,0 +1,107 @@
+
+
+git init	-> 저장소 만들기
+
+
+git status	-> 현재 상태 확인
+
+
+git add .	-> 파일의 변경사항을 인덱스index에 추가
+
+
+git commit	-> 현재 상태 저장(인덱스에 추가된 변경 사항을 이력에 추가)
+
+
+git reset	-> 이전 상태로 (이력 제거) 
+
+  -> git reset {v2 커밋 아이디} --soft		-> commit만 제거(컴밋 로그 변경시)
+  -> git reset {v2 커밋 아이디} --mixed		-> 인덱스(git add), commit 제거
+  -> git reset {v2 커밋 아이디} --hard		-> 실제파일, 인덱스(git add), commit 제거
+
+
+git reflog	-> 모든 로그 기록 출력(삭제된것도 출력)
+
+
+git branch	-> 브랜치 목록 출력
+
+
+git branch topic	-> 브랜치 topic 생성
+git checkout -b topic	-> 브랜치 topic을 만들고 topic 브랜치로 변경
+
+
+git checkout topic	-> 브랜치를 topic으로 변경
+
+
+fast forward (ex : 가져와야 하는 branch에서 실행)
+git merge topic	-> topic에 있는 파일이 master로 들어옴
+
+
+three way merge
+위와 동일하나 해당파일을 vi열어서 저장
+
+
+git rebase	-> 로그 재정의(squash 시 최초꺼(오래된거)를 남기고 나머지를 squash 처리해야함)
+git rebase -i HEAD~3	-> HEAD 기준 3개를 재정의하겠다는 의미
+
+
+
+=========================================================================================
+
+git remote add origin 깃헙주소	-> github와 연결
+
+
+git remote -v	-> 연결정보 확인
+git ls-remote	-> 연결정보 확인
+
+
+git remote rm origin	-> github와 연결 잘못됐을때 삭제 명령어
+
+
+git push origin master	-> github master 브랜치에 파일업로드 및 병합(pushs는 업로드 + 병합) 명령어
+git push origin topic	-> github topic 브랜치에 파일업로드 및 병합(pushs는 업로드 + 병합) 명령어 : topic이 없으면 생성
+
+
+git pull origin master	-> github master 브랜치에 파일다운로드 및 병합
+
+
+git clone 깃헙주소	-> git init + git remote ~ + git pull 합친 명령어(처음에만 사용)
+
+
+github topic 다운방법
+1. 
+git checkout -b topic	-> 브랜치 topic 생성
+git pull origin topic	-> topic 브랜치 파일다운 및 병합
+
+2.
+git fetch origin	-> github 모든 브랜치 다운
+git checkout -b topic origin/topic	-> 브랜치 topic을 생성 및 origin/topic 파일다운 및 병합
+
+
+git merge --squash topic	-> topic이 index까지만 들어옴. commit 명령어로 로그 남기면 됨(master 브랜치에서 실행)
+
+
+git merge --no-ff topic		-> --no-ff : fast-foward 관계인 경우에도 반드시 병합커밋 로그를 남기게 하는 옵션
+
+
+git tag test1.0.0		-> mastter 브랜치에서 실행(tag 달기)
+
+
+git tag -n 				-> tag 보기
+
+
+git push --tags origin main	-> tag포함 github에 올리기
+
+git checkout dev
+git push origin dev			-> dev도 github에 올리기
+
+* 윈도우 자격증명
+
+
+
+
+
+
+
+
+
+
