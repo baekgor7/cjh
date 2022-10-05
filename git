@@ -89,13 +89,103 @@ git tag test1.0.0		-> mastter 브랜치에서 실행(tag 달기)
 git tag -n 				-> tag 보기
 
 
-git push --tags origin main	-> tag포함 github에 올리기
+git push --tags origin main	-> tag포함 main브랜치 github에 올리기
+
 
 git checkout dev
 git push origin dev			-> dev도 github에 올리기
 
+
+git push --all				-> ex) main, dev등 모든 브랜치 올리기
+
+
+git push --delete origin join_topic	-> 사용끝난 토픽 깃헙에서 삭제 명령어
+
+
+git push -f origin login_topic	-> 강제로 push(rebase 후 충돌시)
+
+
+=========================================================================================
+
 * 윈도우 자격증명
 
+* 소스트리
+
+=========================================================================================
+
+
+소규모 협업 순서
+1. topic 브랜치 생성
+2. 개발
+3. 로그 지저분하면 rebase
+4. topic push
+5. pr 요청
+6. 팀장 승인 후 dev에서 topic merge
+7. merge 완료 후 github branch 삭제(로컬은 삭제 X)
+8. dev 브랜치 pull
+
+
+
+=========================================================================================
+
+
+
+대규모협업
+
+[팀장]
+github 레포지토리 생성(README.md 포함)
+> git clone github주소
+> touch 환경설정.txt (환경설정 파일 생성)
+> git add .
+> git commit -m "환경설정"
+> git checkout -b dev (dev 브랜치 생성 및 dev 브랜치로 이동)
+> git push --all (github main, dev 둘다 push : 처음에만 거의 씀)
+브랜치 보호 (main, dev push 승인 후 하도록 설정)
+github에서 collaborator 진행(개발자1, 개발자2 push등 할수 있게 연결)
+
+pr오면 : 
+ 1. github - Pull requests - commit 로그확인
+ 2. Apprive (승인) 처리 (comment : 일반적 커멘트, Request Change : 반송)
+ 3. merge pull request 클릭(개발자쪽에서 할수도 있음)
+ 4. github dev에 병합됐는지 확인
+ 
+개발완료후 : 
+ > git checkout dev
+ > git pull origin dev (github dev와 동기화)
+ > git checkout main
+ > git pull origin main (github main과 동기화)
+ > git checkout dev 
+ > git checkout -b release-1.0 (release 브랜치 생성)
+ > git push origin release-1.0
+github에 올라갔는지 확인
+
+
+
+
+
+[개발자1]
+> git clone github주소
+> git checkout -b dev origin/dev (dev 브랜치 생성 및 dev 브랜치로 이동하면서 github dev와 동기화)
+> git checkout -b feature/login (feature/login 브랜치 생성 및 feature/login 브랜치로 이동)
+> touch 로그인.txt (로그인 파일 생성)
+> git add .
+> git commit -m "로그인" (개발완료)
+> git branch (pr요청 : 현재 브랜치 feature/login인지 확인)
+> git push origin feature/login (pr요청 : github feature/login push)
+github에 올라갔는지 확인 (pr요청)
+github - Pull requests - [dev <- feature/login] create pull request - 내용작성 (pr요청)
+pr승인 완료 후 
+> git checkout dev
+> git pull origin dev (github dev와 동기화)
+신규개발
+> git checkout -b feature/board (feature/board 브랜치 생성 및 feature/board 브랜치로 이동)
+> touch 게시판.txt (게시판 파일 생성)
+> git add .
+> git commit -m "게시판" (개발완료)
+> git branch (pr요청 : 현재 브랜치 feature/board 확인)
+> git push origin feature/board (pr요청 : github feature/board push)
+github에 올라갔는지 확인
+승인대기 (개발자2 완료 후 진행)
 
 
 
@@ -103,5 +193,35 @@ git push origin dev			-> dev도 github에 올리기
 
 
 
+
+
+[개발자2]
+> git clone github주소
+> git checkout -b dev origin/dev (dev 브랜치 생성 및 dev 브랜치로 이동하면서 github dev와 동기화)
+> git checkout -b feature/join (feature/join 브랜치 생성 및 feature/join 브랜치로 이동)
+> touch 회원가입10프로.txt (회원가입 파일 생성)
+> git add .
+> git commit -m "회원가입10프로" (개발진행중)
+> touch 회원가입.txt (회원가입 파일 생성)
+> git add .
+> git commit -m "회원가입" (개발완료)
+merge 로그 맞추기 ** (하단)
+> git branch (pr요청 : 현재 브랜치 feature/join인지 확인)
+> git push origin feature/join (pr요청 : github feature/join push)
+github에 올라갔는지 확인 (pr요청)
+나머지는 위와 동일
+
+
+
+
+
+
+
+--rebase는 자기꺼(feature/join)만 해야함. main, dev는 절대 하면 안됨
+merge 로그 맞추기 (꼭 해야하는지는 모르겠음)
+git checkout dev
+git pull origin dev (github dev와 동기화)
+git checkout feature/join
+git rebase dev (merge 로그 순서를 dev로 맞추기)
 
 
